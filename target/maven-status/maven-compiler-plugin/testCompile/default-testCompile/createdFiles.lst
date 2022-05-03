@@ -1,0 +1,6 @@
+com/personal/productcatalog/form/ProductFormTest.class
+com/personal/productcatalog/fixture/ProductFixture.class
+com/personal/productcatalog/service/ProductServiceTest.class
+com/personal/productcatalog/fixture/UserFixture.class
+com/personal/productcatalog/service/UserServiceTest.class
+com/personal/productcatalog/action/ActionTest.class
