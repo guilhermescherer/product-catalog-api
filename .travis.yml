@@ -4,6 +4,9 @@ cache:
 
 language: java
 
+jdk:
+  - openjdk17
+
 services:
   - docker
 
