@@ -3,11 +3,9 @@ package com.personal.productcatalog.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -20,12 +18,14 @@ public class Product {
     private String name;
     private Integer stock;
     private BigDecimal price;
+    private String description;
+    @Enumerated(EnumType.STRING)
+    private Category category;
+    private LocalDate createdDate;
 
     public Product() {}
 
-    public Product(String name, Integer stock, BigDecimal price) {
-        this.name = name;
-        this.stock = stock;
-        this.price = price;
+    public Product(LocalDate createdDate) {
+        this.createdDate = createdDate;
     }
 }

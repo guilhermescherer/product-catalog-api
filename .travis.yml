@@ -7,6 +7,10 @@ language: java
 jdk:
   - openjdk17
 
+branches:
+  only:
+    - main
+
 services:
   - docker
 

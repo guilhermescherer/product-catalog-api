@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,9 +18,13 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
+import static com.personal.productcatalog.utils.SecurityUtils.ROLE_ADMIN;
+import static com.personal.productcatalog.utils.SecurityUtils.ROLE_USER;
+
 @Api(tags = "Product")
 @RestController
 @RequestMapping("/product")
+@Secured({ROLE_USER, ROLE_ADMIN})
 public class ProductController {
 
     private final ProductFacade productFacade;
