@@ -1,5 +1,6 @@
 package com.personal.productcatalog.form;
 
+import com.personal.productcatalog.model.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,4 +22,9 @@ public class ProductForm {
     @NotNull
     @Min(value = 0)
     private BigDecimal price;
+    @NotNull
+    @NotEmpty
+    private String description;
+    @NotNull
+    private Category category;
 }
