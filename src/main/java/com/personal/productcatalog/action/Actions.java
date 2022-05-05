@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 
+import static java.time.LocalDate.now;
+
 @Component
 public class Actions {
     private final AbstractAction<Product> createProduct;
@@ -20,7 +22,7 @@ public class Actions {
 
     @Transactional(rollbackOn = Exception.class)
     public Product createProduct(ProductForm form) {
-        Product product = new Product();
+        Product product = new Product(now());
         BeanUtils.copyProperties(form, product);
 
         return createProduct.perform(product);
