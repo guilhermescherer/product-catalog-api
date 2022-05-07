@@ -3,6 +3,7 @@ package com.personal.productcatalog.config.exception;
 import com.personal.productcatalog.dto.ErrorDTO;
 import com.personal.productcatalog.dto.ExceptionErrorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
@@ -15,8 +16,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
+
 @Component
 public abstract class AbstractExceptionHandler {
+
+    @Value("${project.show-trace-exception}")
+    private boolean showTraceException;
 
     @Autowired
     private MessageSource messageSource;
@@ -26,35 +32,38 @@ public abstract class AbstractExceptionHandler {
 
         exceptionError.setDate(LocalDateTime.now());
         exceptionError.setMessage(ex.getMessage());
-
-        List<String> trace = getTraceByLimit(ex);
-        exceptionError.setTrace(trace);
-
-        List<ErrorDTO> errors = getErrors(ex);
-        exceptionError.setErrors(errors);
+        exceptionError.setTrace(getTrace(ex));
+        exceptionError.setErrors(getErrors(ex));
 
         return exceptionError;
     }
 
-    private List<ErrorDTO> getErrors(Exception ex) {
-        List<ErrorDTO> errors = new ArrayList<>();
+    private List<String> getTrace(Exception ex) {
+        StackTraceElement[] stackTrace = ex.getStackTrace();
 
+        if (isNotEmpty(stackTrace) && showTraceException) {
+            return Arrays.stream(stackTrace)
+                    .map(StackTraceElement::toString)
+                    .collect(Collectors.toList());
+        }
+
+        return null;
+    }
+
+    private List<ErrorDTO> getErrors(Exception ex) {
         if(ex instanceof BindException) {
             List<FieldError> fieldErrors = ((BindException) ex).getBindingResult().getFieldErrors();
 
-            fieldErrors.forEach(e -> {
-                String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-                errors.add(new ErrorDTO(e.getField(), message));
-            });
+            List<ErrorDTO> errors = new ArrayList<>();
+            fieldErrors.forEach(e -> errors.add(getDtoByFieldError(e)));
+            return errors;
         }
 
-        return errors;
+        return null;
     }
 
-    private List<String> getTraceByLimit(Exception ex) {
-        return Arrays.stream(ex.getStackTrace())
-                .limit(5)
-                .map(StackTraceElement::toString)
-                .collect(Collectors.toList());
+    private ErrorDTO getDtoByFieldError(FieldError fieldError) {
+        String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+        return new ErrorDTO(fieldError.getField(), message);
     }
 }

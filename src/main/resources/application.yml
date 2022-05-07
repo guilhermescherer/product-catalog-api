@@ -42,6 +42,9 @@ server:
   servlet:
     context-path: /api/
 
+project:
+  show-trace-exception: ${SHOW_TRACE_EXCEPTION}
+
 #logging:
 #  level:
 #    org:
