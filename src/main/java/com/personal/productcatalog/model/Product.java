@@ -22,6 +22,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
     private LocalDate createdDate;
+    private String image;
 
     public Product() {}
 

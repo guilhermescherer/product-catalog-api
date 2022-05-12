@@ -36,4 +36,8 @@ public class ProductFacade {
     public Product saveByForm(ProductForm form) {
         return actions.createProduct(form);
     }
+
+    public void deleteAll() {
+        productService.deleteAll();
+    }
 }

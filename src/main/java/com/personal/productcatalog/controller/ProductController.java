@@ -51,8 +51,17 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @Transactional
     @ApiOperation(value = "Delete product by id")
-    public ResponseEntity<ProductDTO> deleteById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         productFacade.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping
+    @Transactional
+    @ApiOperation(value = "Delete all products")
+    @Secured(ROLE_ADMIN)
+    public  ResponseEntity<?> deleteAll() {
+        productFacade.deleteAll();
         return ResponseEntity.ok().build();
     }
 
