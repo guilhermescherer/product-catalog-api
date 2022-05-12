@@ -21,6 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .cors()
+                .and()
                 .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(getJwtAuthenticationConverter());
