@@ -27,4 +27,7 @@ public class ProductForm {
     private String description;
     @NotNull
     private Category category;
+    @NotNull
+    @NotEmpty
+    private String image;
 }
