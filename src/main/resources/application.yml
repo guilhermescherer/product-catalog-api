@@ -44,7 +44,7 @@ server:
 
 project:
   show-trace-exception: ${SHOW_TRACE_EXCEPTION}
-  cors-origin: ${CORS_ORIGIN}
+  allowed-origins: ${ALLOWED_ORIGINS}
 
 #logging:
 #  level:

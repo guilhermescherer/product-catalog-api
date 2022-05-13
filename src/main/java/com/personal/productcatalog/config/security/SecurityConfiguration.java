@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,8 +20,10 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Value("${project.cors-origin}")
-    private String corsOrigin;
+    private static final String SEPARATOR_ALLOWED_ORIGINS = "\\|";
+
+    @Value("${project.allowed-origins}")
+    private String allowedOrigins;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -35,9 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(getJwtAuthenticationConverter());
-
-        http
-                .cors(Customizer.withDefaults());
     }
 
     private JwtAuthenticationConverter getJwtAuthenticationConverter() {
@@ -53,8 +51,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        List<String> allowedOrigins = List.of(this.allowedOrigins.split(SEPARATOR_ALLOWED_ORIGINS));
+
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of(corsOrigin.split("\\|")));
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
