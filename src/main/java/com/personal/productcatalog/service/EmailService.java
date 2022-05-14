@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.Objects;
 import java.util.concurrent.SubmissionPublisher;
+
+import static com.personal.productcatalog.utils.MessageUtils.NOT_NULL;
 
 @Service
 public class EmailService {
@@ -29,6 +32,8 @@ public class EmailService {
     }
 
     public void send(Email email) {
+        Objects.requireNonNull(email, NOT_NULL);
+
         try {
             MimeMessage mail = mailSender.createMimeMessage();
 
