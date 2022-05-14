@@ -1,6 +1,5 @@
 package com.personal.productcatalog.form;
 
-import com.personal.productcatalog.form.ProductForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +12,9 @@ import javax.validation.ValidatorFactory;
 import java.math.BigDecimal;
 import java.util.Set;
 
-public class ProductFormTest {
+import static com.personal.productcatalog.utils.MessageUtils.NOT_NULL;
 
-    private static final String NOT_NULL = "must not be null";
+public class ProductFormTest {
     private static final String NOT_EMPTY = "must not be empty";
     private static final String GREATER_ZERO = "must be greater than or equal to 0";
 
@@ -53,11 +52,43 @@ public class ProductFormTest {
     }
 
     @Test
+    public void shouldNotAcceptNullDescription() {
+        Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
+        assertViolation(violations, "description", NOT_NULL);
+    }
+
+    @Test
+    public void shouldNotAcceptNullCategory() {
+        Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
+        assertViolation(violations, "category", NOT_NULL);
+    }
+
+    @Test
+    public void shouldNotAcceptNullImage() {
+        Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
+        assertViolation(violations, "image", NOT_NULL);
+    }
+
+    @Test
     public void shouldNotAcceptEmptyName() {
         productForm.setName("");
 
         Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
         assertViolation(violations, "name", NOT_EMPTY);
+    }
+
+    @Test
+    public void shouldNotAcceptEmptyDescription() {
+        productForm.setDescription("");
+
+        Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
+        assertViolation(violations, "description", NOT_EMPTY);
+    }
+
+    @Test
+    public void shouldNotAcceptEmptyImage() {
+        Set<ConstraintViolation<ProductForm>> violations = validator.validate(productForm);
+        assertViolation(violations, "image", NOT_EMPTY);
     }
 
     @Test
