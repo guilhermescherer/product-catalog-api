@@ -2,8 +2,10 @@
 
 API de cadastro de produtos.
 
-O projeto está focado em realizar todos os processos de um Software, sendo desenvolvimento, teste e Deploy.
-Não foi criado relações entre entidades justamente pois este não é o foco.
+O projeto está focado em realizar todos os processos de um Software.
+- Desenvolvimento
+- Teste
+- Deploy
 
 ### Frameworks 
 - Spring Web
