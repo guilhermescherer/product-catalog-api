@@ -7,6 +7,10 @@ O projeto está focado em realizar todos os processos de um Software.
 - Teste
 - Deploy
 
+A API está realizando deploy automático com Docker, Travis e Heroku.
+- [API](https://productcatalog-api.herokuapp.com/api)
+- [Swagger](https://productcatalog-api.herokuapp.com/api/swagger-ui.html)
+
 ### Frameworks 
 - Spring Web
 - Spring Data JPA - PostgreSQL
@@ -32,5 +36,4 @@ O projeto está focado em realizar todos os processos de um Software.
 - Flow API(Reactive Stream)
 - Generics 
 - Bean Annotation
-
 
