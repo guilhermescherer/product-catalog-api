@@ -25,6 +25,7 @@ import static com.personal.productcatalog.utils.SecurityUtils.ROLE_USER;
 @RestController
 @RequestMapping("/product")
 @Secured({ROLE_USER, ROLE_ADMIN})
+@CrossOrigin("*")
 public class ProductController {
 
     private final ProductFacade productFacade;
