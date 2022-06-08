@@ -1,5 +1,6 @@
 package com.personal.productcatalog.action;
 
+import com.personal.productcatalog.action.product.ProductActions;
 import com.personal.productcatalog.fixture.ProductFixture;
 import com.personal.productcatalog.form.ProductForm;
 import com.personal.productcatalog.model.Product;
@@ -25,7 +26,7 @@ public class ActionTest {
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal("3000");
 
     @InjectMocks
-    private Actions actions;
+    private ProductActions productActions;
     @Mock
     private AbstractAction<Product> createProduct;
 
@@ -44,7 +45,7 @@ public class ActionTest {
 
         given(createProduct.perform(any())).willReturn(product);
 
-        Product saved = actions.createProduct(productForm);
+        Product saved = productActions.createProduct(productForm);
 
         then(createProduct).should(only()).perform(any());
         assertEquals(product.getName(), saved.getName());

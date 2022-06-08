@@ -1,5 +1,6 @@
-package com.personal.productcatalog.action;
+package com.personal.productcatalog.action.product;
 
+import com.personal.productcatalog.action.AbstractAction;
 import com.personal.productcatalog.form.ProductForm;
 import com.personal.productcatalog.model.Product;
 import org.springframework.beans.BeanUtils;
@@ -12,11 +13,11 @@ import javax.transaction.Transactional;
 import static java.time.LocalDate.now;
 
 @Component
-public class Actions {
+public class ProductActions {
     private final AbstractAction<Product> createProduct;
 
     @Autowired
-    public Actions(@Qualifier("createProduct") AbstractAction<Product> createProduct) {
+    public ProductActions(@Qualifier("createProduct") AbstractAction<Product> createProduct) {
         this.createProduct = createProduct;
     }
 

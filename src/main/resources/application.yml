@@ -35,7 +35,7 @@ spring:
     host: smtp.gmail.com
     username: productcatalogofficial@gmail.com
     password: ${EMAIL_PASSWORD}
-    test-connection: true
+    test-connection: false
     port: 587
 
 server:
