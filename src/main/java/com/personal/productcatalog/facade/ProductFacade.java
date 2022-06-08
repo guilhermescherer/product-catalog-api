@@ -1,6 +1,6 @@
 package com.personal.productcatalog.facade;
 
-import com.personal.productcatalog.action.Actions;
+import com.personal.productcatalog.action.product.ProductActions;
 import com.personal.productcatalog.annotations.Facade;
 import com.personal.productcatalog.form.ProductForm;
 import com.personal.productcatalog.model.Product;
@@ -13,12 +13,12 @@ import org.springframework.data.domain.Pageable;
 public class ProductFacade {
 
     private final ProductService productService;
-    private final Actions actions;
+    private final ProductActions productActions;
 
     @Autowired
-    public ProductFacade(ProductService productService, Actions actions) {
+    public ProductFacade(ProductService productService, ProductActions productActions) {
         this.productService = productService;
-        this.actions = actions;
+        this.productActions = productActions;
     }
 
     public Page<Product> findAll(ProductForm form, Pageable pageable) {
@@ -34,7 +34,7 @@ public class ProductFacade {
     }
 
     public Product saveByForm(ProductForm form) {
-        return actions.createProduct(form);
+        return productActions.createProduct(form);
     }
 
     public void deleteAll() {

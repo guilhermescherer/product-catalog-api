@@ -7,7 +7,7 @@ import com.personal.productcatalog.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Action
-public class SaveProductToDatabase extends AbstractAction<Product> {
+public class SaveProductInDatabase extends AbstractAction<Product> {
 
     @Autowired
     private ProductService productService;
