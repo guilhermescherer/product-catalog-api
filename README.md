@@ -8,8 +8,10 @@ O projeto está focado em realizar todos os processos de um Software.
 - Deploy
 
 A API está realizando deploy automático com Docker, Travis e Heroku.
-- [API](https://productcatalog-api.herokuapp.com/api)
-- [Swagger](https://productcatalog-api.herokuapp.com/api/swagger-ui.html) - Como está no Heroku free, pode demorar alguns segundos até o acesso
+- [API](https://productcatalog-api.herokuapp.com/api/resume)
+- [Swagger](https://productcatalog-api.herokuapp.com/api/swagger-ui.html) 
+
+Obs.: O heroku pode demorar a responder, estou utilizando a versão FREE.
 
 ### Frameworks 
 - Spring Web
