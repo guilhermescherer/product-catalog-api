@@ -1,17 +1,15 @@
 # product-catalog-api
 
-API de cadastro de produtos.
+Product registration API.
 
-O projeto está focado em realizar todos os processos de um Software.
-- Desenvolvimento
-- Teste
-- Deploy
+This project contains three stages.
+- Development
+- Testing
+- Deployment
 
-A API está realizando deploy automático com Docker, Travis e Heroku.
+This API is deploying automatically with Docker, Travis and Heroku.
 - [API](https://productcatalog-api.herokuapp.com/api/resume)
 - [Swagger](https://productcatalog-api.herokuapp.com/api/swagger-ui.html) 
-
-Obs.: O heroku pode demorar a responder, estou utilizando a versão FREE.
 
 ### Frameworks 
 - Spring Web
@@ -38,4 +36,3 @@ Obs.: O heroku pode demorar a responder, estou utilizando a versão FREE.
 - Flow API(Reactive Stream)
 - Generics 
 - Bean Annotation
-
